@@ -38,15 +38,15 @@ uint8_t output_pins[] = {ena, enb, in1, in2, in3, in4};
 
 typedef struct robot_s
 {
-    uint8_t speed;
-    uint8_t ena;
-    uint8_t enb;
-    uint8_t in_a;
-    uint8_t in_b;
-    uint8_t in_c;
-    uint8_t in_d;
-    uint8_t ir_left;
-    uint8_t ir_right;
+	uint8_t speed;
+	uint8_t ena;
+	uint8_t enb;
+	uint8_t in_a;
+	uint8_t in_b;
+	uint8_t in_c;
+	uint8_t in_d;
+	uint8_t ir_left;
+	uint8_t ir_right;
 }   robot_t;
 
 uint8_t switch_on(void);
@@ -72,18 +72,18 @@ robot_t follow_line(void);
 
 void setup(void)
 {
-  int i = 0, j = 0;
+	int i = 0, j = 0;
 
-  for (i = 0; i < 5; i++)
-  {
-      pinMode(output_pins[i], OUTPUT);
-  }
+	for (i = 0; i < 5; i++)
+	{
+		pinMode(output_pins[i], OUTPUT);
+	}
 
-  for (j = 0; i < 1; j++)
-  {
-      pinMode(input_pins[j], INPUT);
-  }
-  
+	for (j = 0; i < 1; j++)
+	{
+		pinMode(input_pins[j], INPUT);
+	}
+
 }
 
 /**
@@ -107,13 +107,13 @@ uint8_t switch_on(void)
 {
     if (motor_speed != NULL)
     {
-      analogWrite(ena, (int) motor_speed);
-      analogWrite(enb, (int) motor_speed);
-      return (0);
+	analogWrite(ena, (int) motor_speed);
+	analogWrite(enb, (int) motor_speed);
+	return (0);
     }
     else
     {
-      return (-1);
+	return (-1);
     }
 }
 
@@ -125,8 +125,8 @@ uint8_t switch_on(void)
 
 void switch_off(void)
 {
-  digitalWrite(ena, LOW);
-  digitalWrite(enb, LOW);
+	digitalWrite(ena, LOW);
+	digitalWrite(enb, LOW);
 }
 
 /**
@@ -138,17 +138,17 @@ void switch_off(void)
 
 uint8_t e_detect_black_line(uint8_t ir)
 {
-  int val = digitalRead(ir);
+	int val = digitalRead(ir);
 
-  if (val == HIGH)
-  {
-    return (0);
-  }
+	if (val == HIGH)
+	{
+		return (0);
+	}
 
-  else
-  {
-    return (-1);
-  }
+	else
+	{
+		return (-1);
+	}
 }
 
 /**
@@ -161,14 +161,14 @@ uint8_t e_detect_black_line(uint8_t ir)
 void forward(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 {
 
-  if (_set_motor_speed(MOTOR_SPEED))
-  {
-      digitalWrite(in1,HIGH);
-      digitalWrite(in2,LOW);
+	if (_set_motor_speed(MOTOR_SPEED))
+  	{
+		digitalWrite(in1,HIGH);
+		digitalWrite(in2,LOW);
 
-      digitalWrite(in3,HIGH);
-      digitalWrite(in4,LOW);
-  }
+		digitalWrite(in3,HIGH);
+		digitalWrite(in4,LOW);
+	}
 
 }
 
@@ -181,14 +181,14 @@ void forward(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 
 void backward(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 {
-    if (_set_motor_speed(MOTOR_SPEED))
-    {
-        digitalWrite(in1,LOW);
-        digitalWrite(in2,HIGH);
+	if (_set_motor_speed(MOTOR_SPEED))
+	{
+		digitalWrite(in1,LOW);
+		digitalWrite(in2,HIGH);
 
-        digitalWrite(in3,LOW);
-        digitalWrite(in4,HIGH);
-    }
+		digitalWrite(in3,LOW);
+		digitalWrite(in4,HIGH);
+	}
 
 }
 
@@ -201,14 +201,14 @@ void backward(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 
 void left(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 {
-    if (_set_motor_speed(MOTOR_SPEED))
-    {
-        digitalWrite(in1, HIGH);
-        digitalWrite(in2, LOW);
+	if (_set_motor_speed(MOTOR_SPEED))
+	{
+		digitalWrite(in1, HIGH);
+		digitalWrite(in2, LOW);
 
-        digitalWrite(in3,LOW);
-        digitalWrite(in4,HIGH);
-    }
+		digitalWrite(in3,LOW);
+		digitalWrite(in4,HIGH);
+	}
 
 }
 
@@ -222,14 +222,14 @@ void left(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 
 void right(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 {
-    if (_set_motor_speed(MOTOR_SPEED))
-    {
-        digitalWrite(in1, LOW);
-        digitalWrite(in2, HIGH);
+	if (_set_motor_speed(MOTOR_SPEED))
+	{
+		digitalWrite(in1, LOW);
+		digitalWrite(in2, HIGH);
 
-        digitalWrite(in3,HIGH);
-        digitalWrite(in4,LOW);
-    }
+		digitalWrite(in3,HIGH);
+		digitalWrite(in4,LOW);
+	}
 
 }
 
@@ -241,17 +241,17 @@ void right(unsigned long int motor_speed_r, unsigned long int motor_speed_l)
 
 uint8_t _set_motor_speed(void param)
 {
-  if (param)
-  {
-    int speed = (uint8_t) param;
-    analogWrite(ena, speed);
-    analogWrite(enb, speed);
-    return (0);
-  }
-  else
-  {
-    return (-1);
-  }
+	if (param)
+	{
+		int speed = (uint8_t) param;
+		analogWrite(ena, speed);
+		analogWrite(enb, speed);
+		return (0);
+	}
+	else
+	{
+		return (-1);
+	}
 }
 
 /**
